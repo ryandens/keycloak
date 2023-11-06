@@ -36,6 +36,7 @@
         <maven.compiler.release>17</maven.compiler.release>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
+        <versions.java-security-toolkit>1.0.7</versions.java-security-toolkit>
     </properties>
 
     <dependencyManagement>
@@ -55,6 +56,11 @@
                 <groupId>org.infinispan</groupId>
                 <artifactId>infinispan-client-hotrod-jakarta</artifactId>
                 <version>${infinispan.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.pixee</groupId>
+                <artifactId>java-security-toolkit</artifactId>
+                <version>${versions.java-security-toolkit}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
