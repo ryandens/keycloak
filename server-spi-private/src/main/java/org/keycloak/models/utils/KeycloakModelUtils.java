@@ -17,6 +17,7 @@
 
 package org.keycloak.models.utils;
 
+import java.security.SecureRandom;
 import org.jboss.logging.Logger;
 import org.keycloak.Config;
 import org.keycloak.Config.Scope;
@@ -407,7 +408,7 @@ public final class KeycloakModelUtils {
     public static <V> V runJobInRetriableTransaction(final KeycloakSessionFactory factory, final KeycloakSessionTaskWithResult<V> callable,
                                                      final int attemptsCount, final int retryIntervalMillis) {
         int retryCount = 0;
-        Random rand = new Random();
+        Random rand = new SecureRandom();
         while (true) {
             try (KeycloakSession session = factory.create()) {
                 session.getTransactionManager().begin();
