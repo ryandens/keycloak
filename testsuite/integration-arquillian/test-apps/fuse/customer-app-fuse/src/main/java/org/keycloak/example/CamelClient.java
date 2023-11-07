@@ -17,6 +17,7 @@
 
 package org.keycloak.example;
 
+import io.github.pixee.security.BoundedLineReader;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -95,7 +96,7 @@ public class CamelClient {
         String line;
         try {
             br = new BufferedReader(new InputStreamReader(is));
-            while ((line = br.readLine()) != null) {
+            while ((line = BoundedLineReader.readLine(br, 5_000_000)) != null) {
                 sb.append(line);
             }
         } catch (IOException e) {

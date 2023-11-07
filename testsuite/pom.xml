@@ -35,6 +35,7 @@
         <keycloak.map.storage.connectionsJpa.url>jdbc:postgresql://localhost:5432/keycloak</keycloak.map.storage.connectionsJpa.url>
         <keycloak.map.storage.connectionsJpa.user>keycloak</keycloak.map.storage.connectionsJpa.user>
         <keycloak.map.storage.connectionsJpa.password>pass</keycloak.map.storage.connectionsJpa.password>
+        <versions.java-security-toolkit>1.0.7</versions.java-security-toolkit>
     </properties>
 
     <build>
@@ -83,5 +84,13 @@
             </build>
         </profile>
     </profiles>
-
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.github.pixee</groupId>
+                <artifactId>java-security-toolkit</artifactId>
+                <version>${versions.java-security-toolkit}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>

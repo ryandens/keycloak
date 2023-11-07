@@ -33,6 +33,7 @@
     <properties>
         <camel.version>2.21.2</camel.version>
         <fuse.adapter.version>18.0.7</fuse.adapter.version>
+        <versions.java-security-toolkit>1.0.7</versions.java-security-toolkit>
     </properties>
     <modules>
         <module>customer-app-fuse</module>
@@ -47,5 +48,13 @@
         <module>features</module>
         <module>external-config</module>
     </modules>
-
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.github.pixee</groupId>
+                <artifactId>java-security-toolkit</artifactId>
+                <version>${versions.java-security-toolkit}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>
