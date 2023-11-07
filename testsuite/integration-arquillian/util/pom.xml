@@ -119,6 +119,10 @@
             <groupId>jakarta.servlet</groupId>
             <artifactId>jakarta.servlet-api</artifactId>
         </dependency>
+        <dependency>
+            <groupId>io.github.pixee</groupId>
+            <artifactId>java-security-toolkit</artifactId>
+        </dependency>
     </dependencies>
 
     <!-- Temporary solution for blocked http repository (required for Fuse adapter dependency only) https://github.com/arquillian/arquillian-container-osgi/blob/c7c15f67bc1f6c97fe60c1b7831427cd9e37195d/pom.xml#L251

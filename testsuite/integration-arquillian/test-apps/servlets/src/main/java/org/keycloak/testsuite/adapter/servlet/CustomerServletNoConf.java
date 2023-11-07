@@ -17,6 +17,7 @@
 
 package org.keycloak.testsuite.adapter.servlet;
 
+import io.github.pixee.security.BoundedLineReader;
 import org.keycloak.KeycloakSecurityContext;
 
 import javax.servlet.ServletException;
@@ -64,7 +65,7 @@ public class CustomerServletNoConf extends HttpServlet {
         conn.setRequestProperty(HttpHeaders.AUTHORIZATION, "Bearer " + context.getTokenString());
         BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
         String line;
-        while ((line = rd.readLine()) != null) {
+        while ((line = BoundedLineReader.readLine(rd, 5_000_000)) != null) {
             result.append(line);
         }
         rd.close();
