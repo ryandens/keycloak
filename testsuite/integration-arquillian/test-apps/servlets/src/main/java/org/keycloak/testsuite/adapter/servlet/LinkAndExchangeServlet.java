@@ -16,6 +16,7 @@
  */
 package org.keycloak.testsuite.adapter.servlet;
 
+import io.github.pixee.security.Newlines;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ContentType;
@@ -146,7 +147,7 @@ public class LinkAndExchangeServlet extends HttpServlet {
             String accountLinkUrl = KeycloakUriBuilder.fromUri(linkUrl)
                     .queryParam("redirect_uri", redirectUri).build().toString();
             resp.setStatus(302);
-            resp.setHeader("Location", accountLinkUrl);
+            resp.setHeader("Location", Newlines.stripAll(accountLinkUrl));
         } else if (request.getRequestURI().endsWith("/link") && request.getParameter("response") != null) {
             resp.setStatus(200);
             resp.setContentType("text/html");
