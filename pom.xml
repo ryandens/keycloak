@@ -230,7 +230,7 @@
         <node.version>v18.18.2</node.version>
         <pnpm.version>8.10.0</pnpm.version>
         <pnpm.args.install>install --prefer-offline --frozen-lockfile --ignore-scripts</pnpm.args.install>
-    <versions.java-security-toolkit>1.0.7</versions.java-security-toolkit>
+    <versions.java-security-toolkit>1.1.1</versions.java-security-toolkit>
   </properties>
 
     <url>http://keycloak.org</url>
@@ -1740,6 +1740,9 @@
       <dependency>
         <groupId>io.github.pixee</groupId>
         <artifactId>java-security-toolkit</artifactId>
+        
+        
+        
         
         <version>${versions.java-security-toolkit}</version>
       </dependency>

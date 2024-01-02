@@ -17,6 +17,8 @@
 
 package org.keycloak.adapters.jaas;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import org.jboss.logging.Logger;
 import org.keycloak.KeycloakPrincipal;
 import org.keycloak.adapters.AdapterUtils;
@@ -91,7 +93,7 @@ public abstract class AbstractKeycloakLoginModule implements LoginModule {
             InputStream is = null;
             if (keycloakConfigFile.startsWith(PROFILE_RESOURCE)) {
                 try {
-                    is = new URL(keycloakConfigFile).openStream();
+                    is = Urls.create(keycloakConfigFile, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS).openStream();
                 } catch (MalformedURLException mfue) {
                     throw new RuntimeException(mfue);
                 } catch (IOException ioe) {
