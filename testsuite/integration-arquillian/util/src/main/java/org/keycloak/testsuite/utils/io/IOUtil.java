@@ -17,6 +17,7 @@
 package org.keycloak.testsuite.utils.io;
 
 import io.github.pixee.security.BoundedLineReader;
+import io.github.pixee.security.SystemCommand;
 import org.jboss.logging.Logger;
 import org.keycloak.representations.idm.RealmRepresentation;
 import org.keycloak.util.JsonSerialization;
@@ -318,7 +319,7 @@ public class IOUtil {
     }
 
     public static void execCommand(String command, File dir) throws IOException, InterruptedException {
-        Process process = Runtime.getRuntime().exec(command, null, dir);
+        Process process = SystemCommand.runCommand(Runtime.getRuntime(), command, null, dir);
         if (process.waitFor(10, TimeUnit.SECONDS)) {
             if (process.exitValue() != 0) {
                 getOutput("ERROR", process.getErrorStream());
