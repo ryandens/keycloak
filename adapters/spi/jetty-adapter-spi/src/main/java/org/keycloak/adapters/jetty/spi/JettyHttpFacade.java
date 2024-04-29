@@ -17,6 +17,7 @@
 
 package org.keycloak.adapters.jetty.spi;
 
+import io.github.pixee.security.Newlines;
 import org.keycloak.adapters.spi.AuthenticationError;
 import org.keycloak.adapters.spi.HttpFacade;
 import org.keycloak.adapters.spi.LogoutError;
@@ -200,7 +201,7 @@ public class JettyHttpFacade implements HttpFacade {
 
         @Override
         public void setHeader(String name, String value) {
-            response.setHeader(name, value);
+            response.setHeader(name, Newlines.stripAll(value));
         }
 
         @Override
