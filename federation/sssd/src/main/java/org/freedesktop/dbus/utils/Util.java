@@ -1,6 +1,8 @@
 package org.freedesktop.dbus.utils;
 
 import io.github.pixee.security.BoundedLineReader;
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -334,7 +336,7 @@ public final class Util {
             if (fileUrl.startsWith("file:/")) {
                 dlUrl = new URL("file", "", fileUrl.replaceFirst("file:\\/{1,2}", ""));
             } else {
-                dlUrl = new URL(fileUrl);
+                dlUrl = Urls.create(fileUrl, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
             }
             URLConnection urlConn = dlUrl.openConnection();
             urlConn.setDoInput(true);

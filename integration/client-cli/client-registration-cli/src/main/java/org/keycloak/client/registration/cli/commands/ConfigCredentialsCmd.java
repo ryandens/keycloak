@@ -1,5 +1,7 @@
 package org.keycloak.client.registration.cli.commands;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import org.jboss.aesh.cl.CommandDefinition;
 import org.jboss.aesh.console.command.Command;
 import org.jboss.aesh.console.command.CommandException;
@@ -93,7 +95,7 @@ public class ConfigCredentialsCmd extends AbstractAuthOptionsCmd implements Comm
         }
 
         try {
-            new URL(server);
+            Urls.create(server, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
         } catch (Exception e) {
             throw new RuntimeException("Invalid server endpoint url: " + server, e);
         }
