@@ -17,6 +17,7 @@
 
 package org.keycloak.adapters.authorization.integration.elytron;
 
+import io.github.pixee.security.Newlines;
 import java.io.IOException;
 
 import jakarta.servlet.http.HttpServletResponse;
@@ -53,6 +54,6 @@ public class ServletHttpResponse implements HttpResponse {
 
     @Override
     public void setHeader(String name, String value) {
-        response.setHeader(name, value);
+        response.setHeader(name, Newlines.stripAll(value));
     }
 }
