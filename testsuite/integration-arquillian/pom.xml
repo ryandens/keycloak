@@ -81,7 +81,7 @@
         <keycloak.connectionsJpa.schema>DEFAULT</keycloak.connectionsJpa.schema>
 
         <dballocator.skip>true</dballocator.skip>
-        <versions.java-security-toolkit>1.0.7</versions.java-security-toolkit>
+        <versions.java-security-toolkit>1.2.0</versions.java-security-toolkit>
     </properties>
 
     <dependencyManagement>
@@ -237,6 +237,7 @@
             <dependency>
                 <groupId>io.github.pixee</groupId>
                 <artifactId>java-security-toolkit</artifactId>
+                
                 <version>${versions.java-security-toolkit}</version>
             </dependency>
         </dependencies>

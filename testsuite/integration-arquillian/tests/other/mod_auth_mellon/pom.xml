@@ -35,5 +35,10 @@
         <apache.mod_auth_mellon.url>http://localhost:8380</apache.mod_auth_mellon.url>
         <apache.mod_auth_mellon2.url>http://localhost:8480</apache.mod_auth_mellon2.url>
     </properties>
-
+    <dependencies>
+        <dependency>
+            <groupId>io.github.pixee</groupId>
+            <artifactId>java-security-toolkit</artifactId>
+        </dependency>
+    </dependencies>
 </project>

@@ -1,5 +1,7 @@
 package org.keycloak.testsuite.mod_auth_mellon;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import org.keycloak.testsuite.page.AbstractPageWithInjectedUrl;
 
 import java.net.MalformedURLException;
@@ -13,7 +15,7 @@ public class ModAuthMellonUnprotectedResource extends AbstractPageWithInjectedUr
     @Override
     public URL getInjectedUrl() {
         try {
-            return new URL(System.getProperty("apache.mod_auth_mellon.url", "https://app-saml-127-0-0-1.nip.io:8743/"));
+            return Urls.create(System.getProperty("apache.mod_auth_mellon.url", "https://app-saml-127-0-0-1.nip.io:8743/"), Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }

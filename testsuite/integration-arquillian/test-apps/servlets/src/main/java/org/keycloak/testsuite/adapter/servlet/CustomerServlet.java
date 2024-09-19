@@ -18,6 +18,8 @@
 package org.keycloak.testsuite.adapter.servlet;
 
 import io.github.pixee.security.BoundedLineReader;
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import org.keycloak.KeycloakSecurityContext;
 
 import javax.servlet.ServletException;
@@ -55,7 +57,7 @@ public class CustomerServlet extends HttpServlet {
                 StringBuilder result = new StringBuilder();
                 String urlBase = ServletTestUtils.getUrlBase();
 
-                URL url = new URL(urlBase + "/customer-db/");
+                URL url = Urls.create(urlBase + "/customer-db/", Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("DELETE");
                 conn.setRequestProperty(HttpHeaders.AUTHORIZATION, "Bearer " + context.getTokenString());
@@ -93,7 +95,7 @@ public class CustomerServlet extends HttpServlet {
     private String invokeService(String serviceUrl, KeycloakSecurityContext context) throws IOException {
         StringBuilder result = new StringBuilder();
 
-        URL url = new URL(serviceUrl);
+        URL url = Urls.create(serviceUrl, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
         conn.setRequestProperty(HttpHeaders.AUTHORIZATION, "Bearer " + context.getTokenString());
