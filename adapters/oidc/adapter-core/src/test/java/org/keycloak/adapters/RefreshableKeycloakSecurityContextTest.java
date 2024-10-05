@@ -1,5 +1,6 @@
 package org.keycloak.adapters;
 
+import io.github.pixee.security.ObjectInputFilters;
 import org.junit.Assert;
 import org.junit.Test;
 import org.keycloak.KeycloakPrincipal;
@@ -94,6 +95,7 @@ public class RefreshableKeycloakSecurityContextTest {
 		byte[] bytes = bso.toByteArray();
 		ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
 		ObjectInputStream ois = new ObjectInputStream(bis);
+		ObjectInputFilters.enableObjectFilterIfUnprotected(ois);
 		principal = (KeycloakPrincipal)ois.readObject();
 		ctx = principal.getKeycloakSecurityContext();
 		token = ctx.getToken();
