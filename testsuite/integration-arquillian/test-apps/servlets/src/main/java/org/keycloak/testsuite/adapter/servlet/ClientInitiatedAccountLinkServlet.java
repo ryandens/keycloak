@@ -16,6 +16,7 @@
  */
 package org.keycloak.testsuite.adapter.servlet;
 
+import io.github.pixee.security.Newlines;
 import org.keycloak.KeycloakSecurityContext;
 import org.keycloak.common.util.Base64Url;
 import org.keycloak.common.util.KeycloakUriBuilder;
@@ -69,7 +70,7 @@ public class ClientInitiatedAccountLinkServlet extends HttpServlet {
                     .queryParam("client_id", token.getIssuedFor())
                     .queryParam("redirect_uri", redirectUri).build(realm, provider).toString();
             resp.setStatus(302);
-            resp.setHeader("Location", accountLinkUrl);
+            resp.setHeader("Location", Newlines.stripAll(accountLinkUrl));
         } else if (request.getRequestURI().endsWith("/link") && request.getParameter("response") != null) {
             resp.setStatus(200);
             resp.setContentType("text/html");

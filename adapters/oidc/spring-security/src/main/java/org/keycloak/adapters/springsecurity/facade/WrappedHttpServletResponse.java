@@ -17,6 +17,7 @@
 
 package org.keycloak.adapters.springsecurity.facade;
 
+import io.github.pixee.security.Newlines;
 import org.keycloak.adapters.spi.HttpFacade.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -100,7 +101,7 @@ class WrappedHttpServletResponse implements Response {
 
     @Override
     public void setHeader(String name, String value) {
-        response.setHeader(name, value);
+        response.setHeader(name, Newlines.stripAll(value));
     }
 
     @Override
