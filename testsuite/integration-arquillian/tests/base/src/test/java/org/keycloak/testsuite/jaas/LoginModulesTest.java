@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.invoke.MethodHandles;
 import java.net.URI;
+import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -77,8 +78,8 @@ public class LoginModulesTest extends AbstractKeycloakTest {
             DIRECT_GRANT_CONFIG = MethodHandles.lookup().lookupClass().getResource("/adapter-test/customer-portal/WEB-INF/keycloak.json").toURI();
             BEARER_CONFIG = MethodHandles.lookup().lookupClass().getResource("/adapter-test/customer-db-audience-required/WEB-INF/keycloak.json").toURI();
 
-            DIRECT_GRANT_CONFIG_FILE = File.createTempFile("LoginModulesTest", "testDirectAccessGrantLoginModuleLoginFailed");
-            BEARER_CONFIG_FILE = File.createTempFile("LoginModulesTest", "testBearerLoginFailedLogin");
+            DIRECT_GRANT_CONFIG_FILE = Files.createTempFile("LoginModulesTest", "testDirectAccessGrantLoginModuleLoginFailed").toFile();
+            BEARER_CONFIG_FILE = Files.createTempFile("LoginModulesTest", "testBearerLoginFailedLogin").toFile();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
