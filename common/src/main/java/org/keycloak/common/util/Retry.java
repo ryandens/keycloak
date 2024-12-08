@@ -17,6 +17,7 @@
 
 package org.keycloak.common.util;
 
+import java.security.SecureRandom;
 import java.time.Duration;
 import java.util.Random;
 
@@ -126,7 +127,7 @@ public class Retry {
     }
 
     private static int computeBackoffInterval(int base, int iteration) {
-        return new Random().nextInt(computeIterationBase(base, iteration));
+        return new SecureRandom().nextInt(computeIterationBase(base, iteration));
     }
 
     private static int computeIterationBase(int base, int iteration) {

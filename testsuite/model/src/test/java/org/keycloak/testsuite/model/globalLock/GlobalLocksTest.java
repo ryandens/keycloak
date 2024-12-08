@@ -17,6 +17,7 @@
 
 package org.keycloak.testsuite.model.globalLock;
 
+import java.security.SecureRandom;
 import org.hamcrest.Matchers;
 import org.jboss.logging.Logger;
 import org.junit.Test;
@@ -61,7 +62,7 @@ public class GlobalLocksTest extends KeycloakModelTest {
 
         AtomicInteger counter = new AtomicInteger();
         int numIterations = 50;
-        Random rand = new Random();
+        Random rand = new SecureRandom();
         List<Integer> resultingList = new LinkedList<>();
 
         IntStream.range(0, numIterations).parallel().forEach(index -> inComittedTransaction(s -> {

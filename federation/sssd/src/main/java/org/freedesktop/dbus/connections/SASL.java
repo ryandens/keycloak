@@ -1,6 +1,7 @@
 package org.freedesktop.dbus.connections;
 
 import io.github.pixee.security.BoundedLineReader;
+import java.security.SecureRandom;
 import static org.freedesktop.dbus.connections.SASL.SaslCommand.AGREE_UNIX_FD;
 import static org.freedesktop.dbus.connections.SASL.SaslCommand.AUTH;
 import static org.freedesktop.dbus.connections.SASL.SaslCommand.BEGIN;
@@ -398,7 +399,7 @@ public class SASL {
                     byte[] buf = new byte[8];
                     Message.marshallintBig(id, buf, 0, 8);
                     challenge = stupidlyEncode(md.digest(buf));
-                    Random r = new Random();
+                    Random r = new SecureRandom();
                     r.nextBytes(buf);
                     cookie = stupidlyEncode(md.digest(buf));
                     try {

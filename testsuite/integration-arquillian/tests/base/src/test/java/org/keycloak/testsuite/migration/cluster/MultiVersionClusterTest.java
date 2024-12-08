@@ -23,6 +23,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.net.URL;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.BitSet;
@@ -318,9 +319,9 @@ public class MultiVersionClusterTest extends AbstractClusterTest {
                                 } else if (type.equals(Boolean.TYPE) || type.equals(Boolean.class)) {
                                     value = Boolean.FALSE;
                                 } else if (type.equals(Integer.TYPE) || type.equals(Integer.class)) {
-                                    value = new Random().nextInt();
+                                    value = new SecureRandom().nextInt();
                                 } else if (type.equals(Long.TYPE) || type.equals(Long.class)) {
-                                    value = new Random().nextLong();
+                                    value = new SecureRandom().nextLong();
                                 } else if (type.equals(AuthenticatedClientSessionStore.class)) {
                                     value = new AuthenticatedClientSessionStore();
                                 } else if (type.equals(UserSessionModel.State.class)) {
