@@ -17,6 +17,8 @@
 
 package org.keycloak.testsuite.page;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import org.keycloak.testsuite.util.ServerURLs;
 
 import jakarta.ws.rs.core.UriBuilder;
@@ -38,7 +40,7 @@ public abstract class AbstractPageWithInjectedUrl extends AbstractPage {
             return null;
         }
         try {
-            return new URL(ServerURLs.getAppServerContextRoot() + "/" + url);
+            return Urls.create(ServerURLs.getAppServerContextRoot() + "/" + url, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }

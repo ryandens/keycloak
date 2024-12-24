@@ -17,6 +17,8 @@
 
 package org.keycloak.adapters;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import org.jboss.logging.Logger;
 import org.keycloak.OAuth2Constants;
 import org.keycloak.adapters.rotation.AdapterTokenVerifier;
@@ -393,7 +395,7 @@ public class OAuthRequestAuthenticator {
         Map<String, String> rewriteRules = deployment.getRedirectRewriteRules();
             if(rewriteRules != null && !rewriteRules.isEmpty()) {
             try {
-                URL url = new URL(originalUri);
+                URL url = Urls.create(originalUri, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
                 Map.Entry<String, String> rule =  rewriteRules.entrySet().iterator().next();
                 StringBuilder redirectUriBuilder = new StringBuilder(url.getProtocol());
                 redirectUriBuilder.append("://"+ url.getAuthority());

@@ -16,6 +16,8 @@
  */
 package org.keycloak.testsuite.authz.adapter.example;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import org.jboss.arquillian.container.test.api.Deployer;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.test.api.ArquillianResource;
@@ -115,7 +117,7 @@ public class DefaultAuthzConfigAdapterTest extends AbstractExampleAdapterTest {
     }
 
     private URL getResourceServerUrl() throws MalformedURLException {
-        return new URL(ServerURLs.getAppServerContextRoot() + "/" + RESOURCE_SERVER_ID);
+        return Urls.create(ServerURLs.getAppServerContextRoot() + "/" + RESOURCE_SERVER_ID, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
     }
 
     private void configureAuthorizationServices() {

@@ -16,6 +16,8 @@
  */
 package org.keycloak.testsuite.authz.adapter.example;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.keycloak.common.Profile.Feature.AUTHORIZATION;
@@ -589,7 +591,7 @@ public class AbstractServletPolicyEnforcerTest extends AbstractExampleAdapterTes
 
     private URL getResourceServerUrl() {
         try {
-            return new URL(ServerURLs.getAppServerContextRoot() + "/" + RESOURCE_SERVER_ID);
+            return Urls.create(ServerURLs.getAppServerContextRoot() + "/" + RESOURCE_SERVER_ID, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
         } catch (MalformedURLException e) {
             throw new RuntimeException("Could not obtain resource server url.", e);
         }

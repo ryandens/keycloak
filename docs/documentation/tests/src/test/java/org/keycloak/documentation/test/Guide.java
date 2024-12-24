@@ -1,5 +1,7 @@
 package org.keycloak.documentation.test;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.keycloak.documentation.test.utils.DocUtils;
@@ -37,7 +39,7 @@ public class Guide {
                 body = utils.readBody(htmlFile);
             } else {
                 log.info("Loading guide from '" + guideUrl);
-                body = utils.readBody(new URL(guideUrl));
+                body = utils.readBody(Urls.create(guideUrl, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS));
             }
 
             body = rewriteLinksToGuides(config, body);

@@ -16,6 +16,8 @@
  */
 package org.keycloak.testsuite.authz.adapter.example;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import org.jboss.arquillian.container.test.api.Deployer;
 import org.jboss.arquillian.graphene.page.Page;
 import org.jboss.arquillian.test.api.ArquillianResource;
@@ -164,7 +166,7 @@ public abstract class AbstractBaseServletAuthzAdapterTest extends AbstractExampl
 
     protected URL getResourceServerUrl() {
         try {
-            return new URL(this.appServerContextRootPage + "/" + RESOURCE_SERVER_ID);
+            return Urls.create(this.appServerContextRootPage + "/" + RESOURCE_SERVER_ID, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
         } catch (MalformedURLException e) {
             throw new RuntimeException("Could not obtain resource server url.", e);
         }

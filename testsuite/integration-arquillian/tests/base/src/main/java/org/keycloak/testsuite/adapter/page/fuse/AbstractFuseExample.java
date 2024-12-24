@@ -17,6 +17,8 @@
 
 package org.keycloak.testsuite.adapter.page.fuse;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import org.keycloak.testsuite.adapter.page.AppServerContextRoot;
 
 import java.net.MalformedURLException;
@@ -37,7 +39,7 @@ public abstract class AbstractFuseExample extends AppServerContextRoot {
     public URL getInjectedUrl() {
         if (url == null) {
             try {
-                url = new URL(super.getInjectedUrl().toExternalForm() + "/" + getContext());
+                url = Urls.create(super.getInjectedUrl().toExternalForm() + "/" + getContext(), Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
             } catch (MalformedURLException ex) {
                 throw new IllegalStateException(ex);
             }

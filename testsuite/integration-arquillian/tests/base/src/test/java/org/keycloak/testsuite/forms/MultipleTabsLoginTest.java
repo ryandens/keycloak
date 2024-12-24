@@ -17,6 +17,8 @@
 
 package org.keycloak.testsuite.forms;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.keycloak.testsuite.util.ServerURLs.getAuthServerContextRoot;
 import static org.keycloak.testsuite.util.URLAssert.assertCurrentUrlStartsWith;
@@ -223,7 +225,7 @@ public class MultipleTabsLoginTest extends AbstractTestRealmKeycloakTest {
             // open a new tab performing the passive check
             String passiveCheckUrl = oauth.responseType("none").prompt("none").getLoginFormUrl();
             util.newTab(passiveCheckUrl);
-            MatcherAssert.assertThat(new URL(oauth.getDriver().getCurrentUrl()).getQuery(), Matchers.containsString("error=login_required"));
+            MatcherAssert.assertThat(Urls.create(oauth.getDriver().getCurrentUrl(), Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS).getQuery(), Matchers.containsString("error=login_required"));
 
             // continue with the login in the first tab
             util.switchToTab(originalTab);
